@@ -1,5 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render,cleanup, waitFor, screen } from '@testing-library/react';
 import App from './App';
+import mockedAxios from 'axios';
+
 
 
 test('renders react-logo', () => {
@@ -25,4 +27,26 @@ test('renders loading...', () => {
   const loadingElement = screen.getByText(/loading/i);
   expect(loadingElement).toBeInTheDocument();
   expect(loadingElement).toHaveTextContent(/loading.../i)
+});
+
+
+//axios-mock;
+
+afterEach(cleanup);
+
+test('mocking axios request', async () => {
+  const data = {
+    countries: [
+      { name: 'country1' },
+      { name: 'country2' },
+      { name: 'country3' }
+    ]
+  };
+
+  mockedAxios.get.mockResolvedValueOnce(data);
+  const { getByText } = render(<App />);
+
+  await waitFor(() => {
+    expect(getByText('country1')).toBeInTheDocument();
+  });
 });

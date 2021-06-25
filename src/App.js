@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-//import axios from "axios";
+import axios from "axios";
 //import Countries from "./Countries"
 import Country from "./Country"
 import fetchCountries from "./FetchCountries";
+
 
 export default function App() {
   const [countries, setCountries] = useState([]);
@@ -24,6 +25,13 @@ export default function App() {
   //     });
   // }
 
+  const fetchCountries = async () =>{
+    const url = "https://restcountries.eu/rest/v2/all";
+    const res = await axios.get(url);
+    setCountries(res.data)
+    setLoaded(true)
+  }
+
   useEffect(() => {
     // axios
     //   .get("https://restcountries.eu/rest/v2/all")
@@ -35,12 +43,12 @@ export default function App() {
     //     console.log({ error })
     //   );
 
-  //fetchCountries();
+  fetchCountries();
 
-    fetchCountries().then(countries => {
-      setCountries(countries)
-      setLoaded(true)
-    })
+    // fetchCountries().then(countries => {
+    //   setCountries(countries)
+    //   setLoaded(true)
+    // })
 
   }, []);
 

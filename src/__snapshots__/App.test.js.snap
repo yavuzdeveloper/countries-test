@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetch 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="title"
+  >
+    <img
+      alt="react-logo"
+      src="https://avatars3.githubusercontent.com/u/60869810?v=4"
+      style={
+        Object {
+          "padding": "0 10px 0 0",
+          "width": "20px",
+        }
+      }
+    />
+    Countries
+  </h1>
+  <p>
+    loading...
+  </p>
+</div>
+`;

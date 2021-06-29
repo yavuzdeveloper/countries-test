@@ -7,8 +7,11 @@ import TestRenderer from "react-test-renderer";
 
 
 
-test('renders react-logo', () => {
+beforeEach(() => {
   render(<App />);
+})
+
+test('renders react-logo', () => {
   const logoReact = screen.getByRole("img");
   
   expect(logoReact).toHaveAttribute("src", "https://avatars3.githubusercontent.com/u/60869810?v=4")
@@ -17,7 +20,6 @@ test('renders react-logo', () => {
 
 
 test('renders Countires title', () => {
-  render(<App />);
   const titleElement = screen.getByText(/countries/i);
 
   expect(titleElement).toBeInTheDocument();
@@ -26,7 +28,6 @@ test('renders Countires title', () => {
 
 
 test('renders loading...', () => {
-  render(<App />);
   const loadingElement = screen.getByText(/loading/i);
   expect(loadingElement).toBeInTheDocument();
   expect(loadingElement).toHaveTextContent(/loading.../i)
@@ -75,4 +76,4 @@ test("fetch", () => {
     )
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
-})
+});

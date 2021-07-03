@@ -1,15 +1,11 @@
-import { render,cleanup, waitFor, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
-import mockedAxios from 'axios';
-
-import axios from 'axios';
-import TestRenderer from "react-test-renderer";
 
 
 
 beforeEach(() => {
   render(<App />);
-})
+});
 
 test('renders react-logo', () => {
   const logoReact = screen.getByRole("img");
@@ -59,21 +55,21 @@ test('renders loading...', () => {
 // });
 
 //***************
-jest.mock('axios');
+// jest.mock('axios');
 
-test("fetch", () => {
-  const response = {
-    countries: [
-      { name: 'country1' },
-      { name: 'country2' },
-      { name: 'country3' }
-    ]
-  }
-  axios.get.mockResolvedValue(response);
+// test("fetch", () => {
+//   const response = {
+//     countries: [
+//       { name: 'country1' },
+//       { name: 'country2' },
+//       { name: 'country3' }
+//     ]
+//   }
+//   axios.get.mockResolvedValue(response);
 
-    const component = TestRenderer.create(
-      <App />
-    )
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-});
+//     const component = TestRenderer.create(
+//       <App />
+//     )
+//     let tree = component.toJSON();
+//     expect(tree).toMatchSnapshot();
+// });
